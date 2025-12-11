@@ -1,0 +1,47 @@
+"""Test configuration for graph representation learning."""
+
+# Test configuration
+data:
+  dataset_name: "synthetic"
+  data_dir: "data"
+  num_walks: 5
+  walk_length: 10
+  window_size: 3
+  embedding_dim: 32
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+
+model:
+  model_type: "deepwalk"
+  hidden_dim: 32
+  num_layers: 2
+  dropout: 0.1
+  activation: "relu"
+  use_batch_norm: true
+  use_residual: false
+
+training:
+  batch_size: 16
+  learning_rate: 0.01
+  weight_decay: 1e-4
+  num_epochs: 10
+  early_stopping_patience: 5
+  device: "cpu"  # Use CPU for tests
+  mixed_precision: false
+  gradient_clip_norm: null
+
+evaluation:
+  metrics: ["accuracy", "f1"]
+  save_embeddings: false
+  visualize_embeddings: false
+  tsne_perplexity: 30.0
+  tsne_n_iter: 100
+
+logging:
+  use_wandb: false
+  wandb_project: "graph-representation-learning-test"
+  log_level: "INFO"
+  save_checkpoints: false
+  checkpoint_dir: "test_checkpoints"

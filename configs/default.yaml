@@ -1,0 +1,46 @@
+# Default configuration for graph representation learning
+
+data:
+  dataset_name: "karate"
+  data_dir: "data"
+  num_walks: 10
+  walk_length: 20
+  window_size: 5
+  embedding_dim: 64
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+
+model:
+  model_type: "deepwalk"  # deepwalk, dgi, graphcl, grace
+  hidden_dim: 64
+  num_layers: 2
+  dropout: 0.1
+  activation: "relu"
+  use_batch_norm: true
+  use_residual: false
+
+training:
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  num_epochs: 100
+  early_stopping_patience: 10
+  device: "auto"  # auto, cpu, cuda, mps
+  mixed_precision: false
+  gradient_clip_norm: null
+
+evaluation:
+  metrics: ["accuracy", "f1", "auc"]
+  save_embeddings: true
+  visualize_embeddings: true
+  tsne_perplexity: 30.0
+  tsne_n_iter: 1000
+
+logging:
+  use_wandb: false
+  wandb_project: "graph-representation-learning"
+  log_level: "INFO"
+  save_checkpoints: true
+  checkpoint_dir: "checkpoints"
